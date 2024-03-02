@@ -6,6 +6,8 @@ import org.springframework.boot.test.context.*;
 
 import javax.annotation.*;
 
+import java.util.*;
+
 @SpringBootTest
 public class MapperTests {
 
@@ -20,5 +22,18 @@ public class MapperTests {
     int result = userMapper.insert(user);
     System.out.println("影响的行数: " + result);
     System.out.println("id: " + user.getId());
+  }
+
+  @Test
+  public void testSelect() {
+   User user = userMapper.selectById(1);
+    System.out.println(user);
+    List<User> users = userMapper.selectBatchIds(Arrays.asList(1, 2, 3));
+    users.forEach(System.out::println);
+    Map<String,Object> map = new HashMap<>();
+    map.put("name","Helen");
+    map.put("age",18);
+    List<User> users1 = userMapper.selectByMap(map);
+    users1.forEach(System.out::println);
   }
 }
