@@ -16,7 +16,7 @@ public class MapperTests {
 
   @Test
   public void testInsert() {
-    User user  = new User();
+    User user = new User();
     user.setName("Helen");
     user.setAge(18);
     int result = userMapper.insert(user);
@@ -26,14 +26,29 @@ public class MapperTests {
 
   @Test
   public void testSelect() {
-   User user = userMapper.selectById(1);
+    User user = userMapper.selectById(1);
     System.out.println(user);
     List<User> users = userMapper.selectBatchIds(Arrays.asList(1, 2, 3));
     users.forEach(System.out::println);
-    Map<String,Object> map = new HashMap<>();
-    map.put("name","Helen");
-    map.put("age",18);
+    Map<String, Object> map = new HashMap<>();
+    map.put("name", "Helen");
+    map.put("age", 18);
     List<User> users1 = userMapper.selectByMap(map);
     users1.forEach(System.out::println);
+  }
+
+  @Test
+  public void testUpdate() {
+    User user = new User();
+    user.setId(1L);
+    user.setAge(38);
+    int result = userMapper.updateById(user);
+    System.out.println("影响的行数: " + result);
+  }
+
+  @Test
+  public void testDelete() {
+    int result = userMapper.deleteById(5);
+    System.out.println("影响的行数: " + result);
   }
 }
