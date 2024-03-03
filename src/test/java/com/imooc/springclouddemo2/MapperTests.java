@@ -68,5 +68,12 @@ public class MapperTests {
 
     Product p3 = productMapper.selectById(1L);
     System.out.println("最后的结果: " + p3.getPrice());
+
+    if (result2 == 0) {
+      System.out.println("小王重试");
+      p2 = productMapper.selectById(1L);
+      p2.setPrice(p2.getPrice() - 30);
+      productMapper.updateById(p2);
+    }
   }
 }
