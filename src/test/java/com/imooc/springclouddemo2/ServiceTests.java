@@ -1,6 +1,7 @@
 package com.imooc.springclouddemo2;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.*;
 import com.imooc.springclouddemo2.entity.*;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.*;
@@ -29,5 +30,11 @@ public class ServiceTests {
       users.add(user);
     }
     userService.saveBatch(users);
+  }
+
+  @Test
+  public void test02() {
+    Page<User> pageParam = new Page<>(1,5);
+    System.out.println(pageParam);
   }
 }
