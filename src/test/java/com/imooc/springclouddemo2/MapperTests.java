@@ -13,6 +13,8 @@ public class MapperTests {
 
   @Resource
   UserMapper userMapper;
+  @Resource
+  private ProductMapper productMapper;
 
   @Test
   public void testInsert() {
@@ -50,5 +52,21 @@ public class MapperTests {
   public void testDelete() {
     int result = userMapper.deleteById(5);
     System.out.println("影响的行数: " + result);
+  }
+
+  @Test
+  public void testConUpdate() {
+    Product p1 = productMapper.selectById(1L);
+    Product p2 = productMapper.selectById(1L);
+    p1.setPrice(p1.getPrice() + 50);
+    int result1 = productMapper.updateById(p1);
+    System.out.println("小李修改结果: " + result1);
+
+    p2.setPrice(p2.getPrice() - 30);
+    int result2 = productMapper.updateById(p2);
+    System.out.println("小王修改结果: " + result2);
+
+    Product p3 = productMapper.selectById(1L);
+    System.out.println("最后的结果: " + p3.getPrice());
   }
 }
